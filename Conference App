@@ -1,0 +1,19 @@
+function createCalendarEvent() {
+
+  let events = SpreadsheetApp.getActiveSpreadsheet().getRangeByName("Event").getValues();
+
+  
+  events.forEach(function(e) {
+    
+    let title = e[0];
+    let startTime = new Date(e[2]);
+    let endTime = new Date(e[3]);
+    let description = e[1]+e[4]+e[5]; 
+
+    let event options = {
+      description: description
+    };
+
+    CalendarApp.getCalendarById("c_e5713688833dd7e8ae685f52f646d02ac9fc2e7df84b20f76ffbccf4175c459c@group.calendar.google.com").createEvent(title, startTime, endTime, eventOptions);
+  });
+}
